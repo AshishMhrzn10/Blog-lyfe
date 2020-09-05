@@ -8,10 +8,7 @@ class Categories(models.TextChoices):
     ENVIRONMENT = 'environment'
     TECHNOLOGY = 'technology'
     DESIGN = 'design'
-    CULURE = 'culture'
     BUSINESS = 'business'
-    POLITICS = 'politics'
-    OPINION = 'opinion'
     SCIENCE = 'science'
     HEALTH = 'health'
     STYLE = 'style'
@@ -41,7 +38,7 @@ class BlogPost(models.Model):
             slug = original_slug + '-' + str(count)
             count += 1
             queryset = BlogPost.objects.all().filter(slug__iexact=slug).count()
-        
+
         self.slug = slug
 
         if self.featured:
@@ -53,10 +50,8 @@ class BlogPost(models.Model):
 
             except BlogPost.DoesNotExist:
                 pass
-        
+
         super(BlogPost, self).save(*args, **kwargs)
 
-    
     def __str__(self):
         return self.title
-    
